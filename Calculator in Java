@@ -1,0 +1,134 @@
+import java.util.*;
+public class Calculator{
+    public static void main(String args[]){
+        Scanner sc = new Scanner(System.in);
+        while(true){
+        System.out.println("\n\nCalculator in Java Starts...");
+        System.out.println("Welcome to the Calculator!");
+        System.out.println("Choose an operation: ");
+        System.out.println("+ : Addition");
+        System.out.println("- : Subtraction");
+        System.out.println("* : Multiplication");
+        System.out.println("/ : Division");
+        System.out.println("% : Modulo");
+        System.out.println("^ : Exponential");
+        System.out.println("S : Square Root");
+        System.out.println("! : Factorial");
+        System.out.println("t : Trigonometric Funcs(sin,cos,tan)");
+        System.out.println("q : Quit");
+        System.out.print("Enter Your Operation: ");
+        char choice = sc.next().charAt(0);
+        if(choice=='q'){
+            System.out.println("Thankyou for using my Calculator...!!!");
+            break;
+        }
+        if(choice=='^'){
+            System.out.println("Caution: Treat first no. as BASE and second no. as EXPONENT...");
+        }
+        if(choice=='S' || choice=='!'){
+            System.out.println("Caution: Enter First and Second number as a SAME NUMBER.");
+        }
+        if(choice=='t'){
+            System.out.println("Caution: Enter First and Second number as a SAME NUMBER since  these numbers indicates (Angle in Degree's)");
+        }
+        
+        // to validate given operation(choice)
+        if ("+-*/%^S!tq".indexOf(choice)==-1){
+            System.out.println("Invalid Operation Choosen . Please Select a Valid operator!!!");
+            System.out.println("\n");
+            continue;
+        }
+        // to validate given input
+        double a=0.0 , b=0.0;
+        boolean validInp=false;
+        while(!validInp){
+            try{
+                System.out.println("Enter the First Number: ");
+                a=sc.nextDouble();
+                System.out.println("Enter the Second Number: ");
+                b=sc.nextDouble();
+                validInp=true;
+            } catch(InputMismatchException e){
+                System.out.println("Invalid Input...!!! Please Enter Numeric Value");
+                sc.next(); // basically this line is used to clear the invalid input
+            }
+        }
+        
+        
+        switch(choice){
+            case '+':
+                if((a>0 && b>Integer.MAX_VALUE-a)  || (a<0 && b<Integer.MIN_VALUE-a)){
+                    System.out.println("Result Exceeds the range of Integers...!!!");
+                    System.out.println("\n");
+                }
+                else{
+                System.out.println("Addition of Two Numbers is: "+(a+b));
+                System.out.println("\n");
+                }
+                break;
+            case '-':
+                System.out.println("Substraction of Two Numbers is: "+(a-b));
+                System.out.println("\n");
+                break;
+            case '*':
+                System.out.println("Multiplication of Two Numbers is: "+(a*b));
+                System.out.println("\n");
+                break;
+            case '/':
+                if(b!=0){
+                System.out.println("Division of Two Numbers is: "+(a/b));
+                System.out.println("\n");
+                } else{
+                    System.out.println("Division By Zero is Undefined..!!!");
+                    System.out.println("\n");
+                }
+                break;
+
+            case '%':
+                if(b!=0){
+                System.out.println("Remainder of Two Numbers is: "+(a%b));
+                System.out.println("\n");
+                } else{
+                    System.out.println("Division by zero is Undefined...!!!");
+                    System.out.println("\n");
+                }
+                break;
+
+            case '^':
+                System.out.println("Result: " + Math.pow(a, b));
+                break;
+            case 'S':
+                if (a >= 0) {
+                    System.out.println("Square Root: " + Math.sqrt(a));
+                } else {
+                    System.out.println("Error: Cannot calculate the square root of a negative number.");
+                }
+                break;
+            
+            case '!':
+                if (a > 20) { // Factorials beyond 20 exceed the range of long in Java.
+                    System.out.println("Error: Factorial result is too large to compute.");
+                } else {
+                    long factorial = 1;
+                    for (int i = 1; i <= a; i++) {
+                        factorial *= i;
+                    }
+                    System.out.println("Factorial: " + factorial);
+                }
+                break;
+
+            case 't': // Trigonometric functions
+                double radians = Math.toRadians(a);
+                System.out.println("Sine: " + Math.sin(radians));
+                System.out.println("Cosine: " + Math.cos(radians));
+                System.out.println("Tangent: " + Math.tan(radians));
+                break;
+            
+            
+            default:
+                System.out.println("Invalid Operation Called...!!!");
+        }
+    }
+
+    }
+}
