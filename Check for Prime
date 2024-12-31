@@ -1,0 +1,29 @@
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter a number to check if it is PRIME or NOT: ");
+        int n = sc.nextInt();  // Use int for prime logic
+        
+        if (n <= 1) {
+            System.out.println(n + " is NOT a prime number.");
+        } else if (n == 2) {
+            System.out.println(n + " is a prime number.");  // 2 is the only even prime number
+        } else {
+            boolean isPrime = true;
+            for (int i = 2; i <= Math.sqrt(n); i++) { // Check divisors up to √n
+                if (n % i == 0) {
+                    isPrime = false;
+                    break; // Exit loop early as it's not prime
+                }
+            }
+            if (isPrime) {
+                System.out.println(n + " is a prime number.");
+            } else {
+                System.out.println(n + " is NOT a prime number.");
+            }
+        }  
+        sc.close();  // Close the Scanner
+    }
+}
