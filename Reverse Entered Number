@@ -1,0 +1,14 @@
+import java.util.*;
+public class Main{
+    public static void main(String args[]){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Program to print Reverse of entered number...!!!");
+        System.out.print("Enter a number:");
+        int num = sc.nextInt();
+        while(num>0){
+            int i = num % 10;
+            System.out.print(i);
+            num /= 10;
+        }
+    }
+}
